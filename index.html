@@ -57,32 +57,6 @@ img{
     document.getElementById("target").src = yourImages[0];
   }
 
-  // adapted from https://stackoverflow.com/a/25510007
-  function every8am(yourcode){
-      var now = new Date(),
-          start,
-          wait;
-
-      if (now.getHours() < 7) {
-          start = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 8, 0, 0, 0);
-      } else {
-          start = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 8, 0, 0, 0);
-      }
-
-      wait = start.getTime() - now.getTime();
-
-      if(wait <= 0) { //If missed 8am before going into the setTimeout
-          console.log('Oops, missed the hour');
-          every8am(yourcode); //Retry
-      } else {
-          setTimeout(function () { //Wait 8am
-              setInterval(function () {
-                  yourcode();
-              }, 86400000); //Every day
-          },wait);
-      }
-  }
-
   changePicture();
-  every8am(changePicture);
+  window.setInterval(changePicture, 10000);
 </script>
